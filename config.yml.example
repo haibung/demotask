@@ -1,0 +1,39 @@
+env: Development # | Production | Development
+port: 8090
+maxFailure: 3
+
+# AUTH
+auth:
+  expireAccessToken: 3d
+  expireRefreshToken: 6d
+  secret: vzThJNyvMp2kV3H5
+  secretClaim: vzThJNyvMp2kV3H5
+
+# POSTGRES
+postgres: # LOCAL
+  username: demotask
+  password: demotask123
+  sslMode: disable
+  host: db
+  port: 5432
+  dbName: demotask
+
+# REDIS
+redis:
+  host: redis
+  port: 6379
+  Password: ""
+  defaultDb: 0
+
+# PAYPAL
+paypal:
+  clientId: 
+  clientSecret: 
+  sandboxUrl: https://api-m.sandbox.paypal.com/v1/oauth2/token
+  redirectUrl: http://localhost:3000/oauth/callback
+  webhookId: 
+  environment: sandbox # sandbox | live
+  checkoutSuccessUrl: http://localhost:8090/static/index.html
+  checkoutCancelUrl: http://localhost:8090/static/index.html
+  baseUrl: https://api-m.sandbox.paypal.com
+  authBaseUrl: https://www.sandbox.paypal.com

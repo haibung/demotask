@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: demotask-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: demotask
+      POSTGRES_USER: demotask
+      POSTGRES_PASSWORD: demotask123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U demotask -d demotask" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: demotask-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: demotask-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      APP_ENV: development
+    ports:
+      - "8090:8090"
+    command: [ "start" ]
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: demotask-ngrok
+    restart: unless-stopped
+    depends_on:
+      - backend
+    command:
+      - "http"
+      - "backend:8090"
+    ports:
+      - "4040:4040"
+    profiles:
+      - tunnel
+
+volumes:
+  pgdata:

@@ -1,0 +1,698 @@
+{
+  "info": {
+    "_postman_id": "d33c9da5-73dc-49bf-a203-19b4e393d57e",
+    "name": "DEMO TASK",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17728921",
+    "_collection_link": "https://go.postman.co/collection/17728921-d33c9da5-73dc-49bf-a203-19b4e393d57e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "USER",
+      "item": [
+        {
+          "name": "Login Paypal Token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8090/v1/oauth/paypal/callback",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "oauth",
+                "paypal",
+                "callback"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register as User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"FullName\": \"Arif Muhammad\",\n    \"Email\": \"testesji@gmail.com\",\n    \"Password\": \"123123123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login as User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"Email\": \"payagain@gmail.com\",\n    \"Password\": \"123123123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PRODUCTS",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjIsInV1aWQiOiJkZDg4ZDEwMC1mZjU4LTQ4MjUtOTZiNy1mYTliMmRlOGVkNjgifSwiZXhwIjoxNzcyMDI2ODY5LCJpYXQiOjE3NzE3Njc2Njl9.-hQjRqsRkhW0wTQ_9OweocZG2_UYyT9WYOheYXx_WAc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8090/v1/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product To Paypal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"CHEAPER CPU\",\n  \"description\": \"CEAPER HOSTING\",\n  \"business_type\": \"DIGITAL\", // PHYSICAL | DIGITAL | SERVICE\n  \"category\": \"SOFTWARE\", \n  \"image_url\": \"https://example.com/streaming.jpg\",\n  \"home_url\": \"https://example.com/home\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create One Time Price Product {Token}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjIsInV1aWQiOiJkZDg4ZDEwMC1mZjU4LTQ4MjUtOTZiNy1mYTliMmRlOGVkNjgifSwiZXhwIjoxNzcyMDI2ODY5LCJpYXQiOjE3NzE3Njc2Njl9.-hQjRqsRkhW0wTQ_9OweocZG2_UYyT9WYOheYXx_WAc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": 2,\n  \"price\": 10,\n  \"currency\": \"USD\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/products/one-time-price",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "products",
+                "one-time-price"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ORDERS",
+      "item": [
+        {
+          "name": "Create Cart Client {Token}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjUsInV1aWQiOiIyMTAzNDViYi05ZTk3LTRjYmQtYmI4Yy03MDMwMDg0ZDk3Y2EifSwiZXhwIjoxNzcxNjgzMzIyLCJpYXQiOjE3NzE0MjQxMjJ9.rGf-tKaZHrLvEDOLq5vH79dY1vBAxH94WgKiFnj0KL4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"product_id\": 5,\n      \"quantity\": 10\n    }\n    // {\n    //   \"product_id\": 1,\n    //   \"quantity\": 1\n    // }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Order Client {Token}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsInV1aWQiOiJmNmVjMWE2MC1hOWQyLTQzZDItOTc5NS0wNGQ0YWY2ODkzZWIifSwiZXhwIjoxNzcxNzgzNjYxLCJpYXQiOjE3NzE1MjQ0NjF9.RlkzYlPC3oATtZZt3mR_ZvglCHS4Pqe8FPNnY6_Pu14",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8090/v1/orders/55/pay",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "orders",
+                "55",
+                "pay"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders {Token}",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjQsInV1aWQiOiI5Nzg0ZjY0MS1iNjc3LTRlOTEtOGU4MC04Nzg2MjhkNjk5ZGMifSwiZXhwIjoxNzcyMDI4NzI0LCJpYXQiOjE3NzE3Njk1MjR9.CHj5fodobgvIah68oNbXRimU58o1rWeFI47AZyVDr58",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "PAYPAL-TRANSMISSION-ID",
+                "value": "unique-transmission-id",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-TRANSMISSION-TIM",
+                "value": "2024-01-01T00:00:00Z",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-TRANSMISSION-SIG",
+                "value": "signature",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-CERT-URL",
+                "value": "cert-url",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-AUTH-ALGO",
+                "value": "SHA256withRSA",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders By ID {Token}",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "http://localhost:3000/checkout/success?token=6KF60564RT9535451&PayerID=FBU2HSJW2MXR6&ba_token=BA-7CW53974SM991102B",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "PAYPAL-TRANSMISSION-ID",
+                "value": "unique-transmission-id",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-TRANSMISSION-TIM",
+                "value": "2024-01-01T00:00:00Z",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-TRANSMISSION-SIG",
+                "value": "signature",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-CERT-URL",
+                "value": "cert-url",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-AUTH-ALGO",
+                "value": "SHA256withRSA",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/orders/54",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "orders",
+                "54"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PAYMENT",
+      "item": [
+        {
+          "name": "Pay Again (Vaulted Payment)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsInV1aWQiOiJmNmVjMWE2MC1hOWQyLTQzZDItOTc5NS0wNGQ0YWY2ODkzZWIifSwiZXhwIjoxNzcxNzgzNjYxLCJpYXQiOjE3NzE1MjQ0NjF9.RlkzYlPC3oATtZZt3mR_ZvglCHS4Pqe8FPNnY6_Pu14",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "PAYPAL-TRANSMISSION-ID",
+                "value": "unique-transmission-id",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-TRANSMISSION-TIM",
+                "value": "2024-01-01T00:00:00Z",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-TRANSMISSION-SIG",
+                "value": "signature",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-CERT-URL",
+                "value": "cert-url",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "PAYPAL-AUTH-ALGO",
+                "value": "SHA256withRSA",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 54,\n  \"vault_token_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/payments/pay-again",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "payments",
+                "pay-again"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vault Token",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjcsInV1aWQiOiIwYTNlM2NhZC04MTRmLTQwYTktYmU0MC0yYWJjZjg4MWYzZmEifSwiZXhwIjoxNzcxNzg0NjkzLCJpYXQiOjE3NzE1MjU0OTN9.StsY3cwayOwhb4axTK3Bt9ptJyWAAeQbUNWuz8NTSAk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"product_id\": 5,\n      \"quantity\": 10\n    }\n    // {\n    //   \"product_id\": 1,\n    //   \"quantity\": 1\n    // }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/payments/vault-tokens",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "payments",
+                "vault-tokens"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SUBSCRIPTION",
+      "item": [
+        {
+          "name": "Create Subscription {User Token}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjQsInV1aWQiOiI5Nzg0ZjY0MS1iNjc3LTRlOTEtOGU4MC04Nzg2MjhkNjk5ZGMifSwiZXhwIjoxNzcyMDI4NzI0LCJpYXQiOjE3NzE3Njk1MjR9.CHj5fodobgvIah68oNbXRimU58o1rWeFI47AZyVDr58",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"billing_plan_id\": 2,\n    \"quantity\": 1 // IF SUPPORT\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/subscriptions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "subscriptions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Subscription",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjQsInV1aWQiOiIyNjg1YmMzNi1jMmIzLTQxYjEtYTk4NC1kZWI0MmZkMjc5MmMifSwiZXhwIjoxNzcyMDYxNjk3LCJpYXQiOjE3NzE4MDI0OTd9.w8tmDa0-84AM57aI5qxA7AjIVFg4G78yu2m5o0fmtn0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/subscriptions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "subscriptions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "BILLING",
+      "item": [
+        {
+          "name": "Create Plan {User Token}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJfaWQiOjIsInV1aWQiOiJkZDg4ZDEwMC1mZjU4LTQ4MjUtOTZiNy1mYTliMmRlOGVkNjgifSwiZXhwIjoxNzcyMDI2ODY5LCJpYXQiOjE3NzE3Njc2Njl9.-hQjRqsRkhW0wTQ_9OweocZG2_UYyT9WYOheYXx_WAc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"product_id\": 7,\n    \"name\": \"The Best AI Agent In The World\",\n    \"description\": \"Subscription Now!!\",\n    \"status\": \"ACTIVE\",\n    \"billing_cycles\": [\n        { // IF USING TRIAL MUST TO BE 2 BILLING CYCLES\n            \"interval_unit\": \"MONTH\",\n            \"interval_count\": 1,\n            \"tenure_type\": \"TRIAL\",\n            \"sequence\": 1,\n            \"total_cycles\": 1,\n            \"price\": 0,\n            \"currency\": \"USD\"\n        },\n        { \n            \"interval_unit\": \"MONTH\",\n            \"interval_count\": 1,\n            \"tenure_type\": \"REGULAR\",\n            \"sequence\": 2,\n            \"total_cycles\": 0,\n            \"price\": 20,\n            \"currency\": \"USD\"\n        }\n    ],\n    // \"taxes\": { // CAN USE TAX OR NOT // IGNORE IF NOT USE IT\n    //     \"percentage\": 10,\n    //     \"inclusive\": false\n    // },\n    \"payment_preferences\": {\n        \"auto_bill_outstanding\": true,\n        \"payment_failure_threshold\": 1\n    }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8090/v1/billing-plans",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "v1",
+                "billing-plans"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
